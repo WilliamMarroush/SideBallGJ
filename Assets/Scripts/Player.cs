@@ -24,4 +24,6 @@ public class Player : MonoBehaviour
         Vector2 movement = new Vector2(horizontal, vertical);
         playerrb.velocity = movement * 5f;   
     }
+
+    
 }
