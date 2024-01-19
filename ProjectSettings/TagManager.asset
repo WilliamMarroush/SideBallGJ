@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - animal
+  - pit
+  - stash
+  - player
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -40,4 +45,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ground
+    uniqueID: 3316123651
+    locked: 0
+  - name: stash
+    uniqueID: 3444172293
+    locked: 0
+  - name: pit
+    uniqueID: 972485823
+    locked: 0
+  - name: animal
+    uniqueID: 1987337767
     locked: 0
