@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    //Variable Instantiation
     [SerializeField] Color32 hasAppleColor = new Color32(1, 1, 1, 1);
     [SerializeField] Color32 noAppleColor = new Color32(1, 1, 1, 1);
     [SerializeField] public float enemySpeed = 2f;
@@ -16,10 +16,15 @@ public class Enemy : MonoBehaviour
     private GameObject apple;
     public GameObject target;
 
+    private GameObject[] stashTargets;
+    private GameObject[] pitTargets;
+    public int team;
+
     private bool hasApple = false;
     // Start is called before the first frame update
     void Start()
     {
+        //Get the enemy RB and SR Components from the scene
         enemyRB = GetComponent<Rigidbody2D>();
         enemySR = GetComponent<SpriteRenderer>();
 
@@ -41,6 +46,7 @@ public class Enemy : MonoBehaviour
         
         
     }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -65,25 +71,40 @@ public class Enemy : MonoBehaviour
 
     void FindTarget()
     {
-        if(hasApple)
-        {
-            target = GameObject.FindWithTag("stash");
-            Debug.Log("found stash target");
+        //Create lists of both stash and pit objects
+        stashTargets = GameObject.FindGameObjectsWithTag("stash");
+        pitTargets = GameObject.FindGameObjectsWithTag("pit");
+        
+        //If the enemy has an apple, match the stashID to the team, then go to that stash
+        if(hasApple){
+            for (int i=0; i<stashTargets.Length;i++){
+                if (stashTargets[i].GetComponent<Stash>().stashID == team){
+                    target = stashTargets[i];
+                    Debug.Log("found stash target");
+                    break;
+                }
+            }
         }
-
-        else if(!hasApple)
-        {
-            target = GameObject.FindWithTag("pit");
-            Debug.Log("found pit target");
+        //If the enemy doesn't have an apple, match the pitID to the team, then go to that pit
+        else{
+            for (int i=0; i<pitTargets.Length;i++){
+                if (pitTargets[i].GetComponent<Ballpit>().bpID == team){
+                    target = pitTargets[i];
+                    Debug.Log("found pit target");
+                    break;
+                }
+            }
         }
     }
 
+    //Move towards pit or stash
     void MoveTowardsTarget()
     {
         Vector3 targetPos = Vector3.MoveTowards(transform.position, target.transform.position, enemySpeed * Time.deltaTime);
         enemyRB.MovePosition(targetPos);
         //Debug.Log("moving");
     }
+
 
     void PickUpApple()
     {
@@ -94,6 +115,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("apple instantiated");
     }
 
+    //destroy the apple object
     void DropApple()
     {
         Destroy(apple);
