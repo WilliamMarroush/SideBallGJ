@@ -47,8 +47,8 @@ public class Enemy : MonoBehaviour
         
     }
 
-
-    void OnTriggerEnter2D(Collider2D other)
+    //code for when enemy collides with another collider.  
+    void OnTriggerEnter2D(Collider2D other) //other is the other colliders game object
     {
        if((other.CompareTag("pit")) && (!hasApple))
         {
@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour
 
     void PickUpApple()
     {
-        Vector3 spawnPosition = transform.position + transform.forward * 2f;
+        Vector3 spawnPosition = transform.position + transform.forward * 2f; //spawns it slightly in front of the enemy and makes it a child of enemy
         Quaternion spawnRotation = Quaternion.identity;
 
         apple = Instantiate(applePrefab, spawnPosition, spawnRotation, transform);
