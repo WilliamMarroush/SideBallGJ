@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     private bool hasApple = false;
     public int team;
+    public int playerScore=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,9 +43,10 @@ public class Player : MonoBehaviour
 
         if ((other.CompareTag("stash")) && (hasApple) && (other.GetComponent<Stash>().stashID == team))
         {
-            Debug.Log("enemy brought apple to stash");
+            Debug.Log("player brought apple to stash");
             hasApple = false;
             DropApple();
+            playerScore++;
         }
     }
 
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour
         Vector2 movement = new Vector2(horizontal, vertical);
         playerrb.velocity = movement * 5f;   
     }
+
 
     void PickUpApple()
     {

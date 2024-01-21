@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     private GameObject[] stashTargets;
     private GameObject[] pitTargets;
     public int team;
+    public int score=0;
 
     private bool hasApple = false;
     // Start is called before the first frame update
@@ -52,7 +53,7 @@ public class Enemy : MonoBehaviour
     {
        if((other.CompareTag("pit")) && (!hasApple))
         {
-            Debug.Log("enemy picked up apple");
+            //Debug.Log("enemy picked up apple");
             hasApple = true;
             //enemySR.color = hasAppleColor;
             PickUpApple();
@@ -61,10 +62,11 @@ public class Enemy : MonoBehaviour
 
        if((other.CompareTag("stash")) && (hasApple))
         {
-            Debug.Log("enemy brought apple to stash");
+            //Debug.Log("enemy brought apple to stash");
             hasApple = false;
             //enemySR.color = noAppleColor;
             DropApple();
+            score++;
             target = null;
         }
     }
@@ -80,7 +82,7 @@ public class Enemy : MonoBehaviour
             for (int i=0; i<stashTargets.Length;i++){
                 if (stashTargets[i].GetComponent<Stash>().stashID == team){
                     target = stashTargets[i];
-                    Debug.Log("found stash target");
+                    //Debug.Log("found stash target");
                     break;
                 }
             }
@@ -90,7 +92,7 @@ public class Enemy : MonoBehaviour
             for (int i=0; i<pitTargets.Length;i++){
                 if (pitTargets[i].GetComponent<Ballpit>().bpID == team){
                     target = pitTargets[i];
-                    Debug.Log("found pit target");
+                    //Debug.Log("found pit target");
                     break;
                 }
             }
@@ -112,14 +114,14 @@ public class Enemy : MonoBehaviour
         Quaternion spawnRotation = Quaternion.identity;
 
         apple = Instantiate(applePrefab, spawnPosition, spawnRotation, transform);
-        Debug.Log("apple instantiated");
+        //Debug.Log("apple instantiated");
     }
 
     //destroy the apple object
     void DropApple()
     {
         Destroy(apple);
-        Debug.Log("apple destroyed");
+        //Debug.Log("apple destroyed");
     }
 
 
