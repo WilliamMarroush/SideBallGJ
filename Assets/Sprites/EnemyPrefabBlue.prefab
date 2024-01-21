@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2977358958479002495}
   - component: {fileID: 793016191485245321}
   - component: {fileID: 7946789337271253065}
-  - component: {fileID: 1226840499623652453}
   m_Layer: 0
   m_Name: EnemyPrefabBlue
   m_TagString: Untagged
@@ -174,17 +173,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.1300004, y: 3.1099997}
   m_Direction: 0
---- !u!114 &1226840499623652453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151511077713913441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fdc141d0aa958a4a9188ff2f8bb47d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceHeight: 0.1
-  bounceSpeed: 2

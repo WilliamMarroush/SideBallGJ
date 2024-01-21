@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     public int team;
     public GameObject enemyPrefab;
     public int enemyCount;
+    public int teamScore;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class Spawner : MonoBehaviour
     }
     void CreateEnemies(GameObject enemyPrefab, int numberofEnemies){
         for (int i=0;i<numberofEnemies;i++){
-            GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity,transform);
+            GameObject enemy = Instantiate(enemyPrefab, transform.position + new Vector3(i,i,i), Quaternion.identity,transform);
             
 
             Enemy enemyScript = enemy.GetComponent<Enemy>();

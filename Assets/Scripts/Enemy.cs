@@ -21,7 +21,12 @@ public class Enemy : MonoBehaviour
     public int team;
     public int score=0;
 
+    private bool has_attack = false;
+
     private bool hasApple = false;
+
+    private bool AppleOnField = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +39,8 @@ public class Enemy : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+
         if (target == null)
         {
             FindTarget();
@@ -44,7 +50,6 @@ public class Enemy : MonoBehaviour
         {
             MoveTowardsTarget();
         }
-        
         
     }
 
@@ -57,10 +62,12 @@ public class Enemy : MonoBehaviour
             hasApple = true;
             //enemySR.color = hasAppleColor;
             PickUpApple();
+            has_attack = true;
             target = null;
+            Destroy(transform.GetChild(0).GetComponent<Apple>().appleRB);
         }
 
-       if((other.CompareTag("stash")) && (hasApple))
+       if((other.CompareTag("stash")) && (hasApple) &&(!AppleOnField))
         {
             //Debug.Log("enemy brought apple to stash");
             hasApple = false;
@@ -69,7 +76,27 @@ public class Enemy : MonoBehaviour
             score++;
             target = null;
         }
+        
+        if ((other.CompareTag("enemy")) && (has_attack) && (other.GetComponent<Enemy>().team !=team))
+        {
+            //Debug.Log("enemy attacked another enemy");
+            has_attack = false;
+            //enemySR.color = noAppleColor;
+            target = null;
+            if (other.GetComponent<Enemy>().hasApple)
+            {
+               // other.transform.GetChild(0).GetComponent<Apple>().onAttacked();
+                other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+                other.GetComponent<Enemy>().hasApple = false;
+                other.GetComponent<Enemy>().AppleOnField = true;
+            }
+            else
+            {
+                other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+            }
+        }
     }
+
 
     void FindTarget()
     {
