@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
             hasApple = false;
             //enemySR.color = noAppleColor;
             DropApple();
-            GameSession.AddToScore(1, team);
+            GameSession.AddToScore(1, team);  //adds points to mone of the enemies teams.  needs the team id so it adds points to the right team.  
             //score++;
             target = null;
         }

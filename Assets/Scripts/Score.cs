@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
 
-    Text playerScoreText;
-    Text redEnemyScoreText;
-    Text blueEnemyScoreText;
+    public Text playerScoreText;
+    public Text redEnemyScoreText;
+    public Text blueEnemyScoreText;
     GameSession gameSession;
     // Start is called before the first frame update
     void Start()
     {
-        playerScoreText = GetComponent<Text>();
-        redEnemyScoreText = GetComponent<Text>();
-        blueEnemyScoreText = GetComponent<Text>();
+        //playerScoreText = GetComponent<Text>();
+        //redEnemyScoreText = GetComponent<Text>();
+        //blueEnemyScoreText = GetComponent<Text>();
         gameSession = FindObjectOfType<GameSession>();
     }
 

@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class GameSession : MonoBehaviour
 {
-
-    public static int playerScore = 0;
-    public static int blueEnemyScore = 0;
-    public static int redEnemyScore = 0;
+    //adds fields in the inspector so that it knows what text to update.  
+    [SerializeField] public static int playerScore = 0;
+    [SerializeField] public static int blueEnemyScore = 0;
+    [SerializeField] public static int redEnemyScore = 0;
 
     private void Awake()
     {
         SetUpSingleton();
     }
 
+
+    //there can only be one game seesion going at a time.  this destroys others that get created.  
     private void SetUpSingleton()
     {
         int numGameSessions = FindObjectsOfType<GameSession>().Length;
@@ -82,6 +84,7 @@ public class GameSession : MonoBehaviour
         }
     }
 
+    //ensures that scores to do nopt carry over to the next game
     public void ResetGame()
     {
         playerScore = 0;

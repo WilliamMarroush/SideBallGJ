@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
             Debug.Log("player brought apple to stash");
             hasApple = false;
             DropApple();
-            GameSession.AddToScore(1, team);
+            GameSession.AddToScore(1, team);  //adds a point to the players score.  needs the team id so it adds the points to the right team.
             Debug.Log("point obtained");
             //playerScore++;
         }
