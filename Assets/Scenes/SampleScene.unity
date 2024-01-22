@@ -905,6 +905,7 @@ MonoBehaviour:
   team: 1
   enemyPrefab: {fileID: 9150282107840791977, guid: 7eca9b4d8843c03489800669ace48308, type: 3}
   enemyCount: 3
+  teamScore: 0
 --- !u!1 &470455374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,6 +1403,7 @@ MonoBehaviour:
   team: 2
   enemyPrefab: {fileID: 151511077713913441, guid: 2c62c76d54ac71b439180f996d76d3aa, type: 3}
   enemyCount: 3
+  teamScore: 0
 --- !u!1 &986009879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,6 +1451,7 @@ MonoBehaviour:
   team: 0
   enemyPrefab: {fileID: 7410730166883421122, guid: 55eb9b8e6b41a2f449827447aef7e61a, type: 3}
   enemyCount: 3
+  teamScore: 0
 --- !u!1 &1046273578 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4444635617348268870, guid: eb299fd835b15354f99372bd218632e1, type: 3}
@@ -2261,7 +2264,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

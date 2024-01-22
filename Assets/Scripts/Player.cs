@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     private bool hasApple = false;
     public int team;
-    public int playerScore=0;
+    //public int playerScore=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +46,9 @@ public class Player : MonoBehaviour
             Debug.Log("player brought apple to stash");
             hasApple = false;
             DropApple();
-            playerScore++;
+            GameSession.AddToScore(1, team);
+            Debug.Log("point obtained");
+            //playerScore++;
         }
     }
 

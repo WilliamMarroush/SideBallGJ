@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     private GameObject[] stashTargets;
     private GameObject[] pitTargets;
     public int team;
-    public int score=0;
+    //public int score=0;
 
     private bool has_attack = false;
 
@@ -64,18 +64,21 @@ public class Enemy : MonoBehaviour
             PickUpApple();
             has_attack = true;
             target = null;
-            Destroy(transform.GetChild(0).GetComponent<Apple>().appleRB);
+            //transform.GetChild(0).GetComponent<Apple>().appleRB.IsSleeping = true;
         }
 
-       if((other.CompareTag("stash")) && (hasApple) &&(!AppleOnField))
+       if((other.CompareTag("stash")) && (hasApple))
         {
             //Debug.Log("enemy brought apple to stash");
             hasApple = false;
             //enemySR.color = noAppleColor;
             DropApple();
-            score++;
+            GameSession.AddToScore(1, team);
+            //score++;
             target = null;
         }
+
+       /*
         
         if ((other.CompareTag("enemy")) && (has_attack) && (other.GetComponent<Enemy>().team !=team))
         {
@@ -95,6 +98,8 @@ public class Enemy : MonoBehaviour
                 other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
             }
         }
+
+       */
     }
 
 
