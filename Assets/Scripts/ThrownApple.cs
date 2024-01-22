@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Apple : MonoBehaviour
+public class ThrownApple : MonoBehaviour
 {
-    public SpriteRenderer appleSR;
+    public Rigidbody2D appleRB;
     // Start is called before the first frame update
     void Start()
     {
-        appleSR = GetComponent<SpriteRenderer>();
+        appleRB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -16,5 +16,4 @@ public class Apple : MonoBehaviour
     {
         
     }
-   
 }

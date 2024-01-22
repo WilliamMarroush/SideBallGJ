@@ -58,3 +58,6 @@ TagManager:
   - name: animal
     uniqueID: 1987337767
     locked: 0
+  - name: foobaa
+    uniqueID: 3475605611
+    locked: 0

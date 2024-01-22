@@ -67,20 +67,20 @@ public class GameSession : MonoBehaviour
         if (teamID == 0)
         {
             playerScore += scoreValue;
-            Debug.Log(playerScore);
+            //Debug.Log(playerScore);
 
         }
 
         else if (teamID == 1)
         {
             redEnemyScore += scoreValue;
-            Debug.Log(redEnemyScore);
+            //Debug.Log(redEnemyScore);
         }
 
         else if (teamID == 2)
         {
             blueEnemyScore += scoreValue;
-            Debug.Log(blueEnemyScore);
+            //Debug.Log(blueEnemyScore);
         }
     }
 

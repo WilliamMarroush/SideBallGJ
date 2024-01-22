@@ -13,7 +13,9 @@ public class Enemy : MonoBehaviour
     SpriteRenderer enemySR;
 
     public GameObject applePrefab;
-    private GameObject apple;
+    public GameObject fieldapplePrefab;
+    public GameObject fieldapple;
+    public GameObject apple;
     public GameObject target;
 
     private GameObject[] stashTargets;
@@ -34,6 +36,11 @@ public class Enemy : MonoBehaviour
         enemyRB = GetComponent<Rigidbody2D>();
         enemySR = GetComponent<SpriteRenderer>();
 
+        Vector3 ApplespawnPosition = transform.position + transform.forward * 2f; 
+        Quaternion ApplespawnRotation = Quaternion.identity;
+        apple = Instantiate(applePrefab, ApplespawnPosition, ApplespawnRotation, transform);
+        apple.GetComponent<Apple>().appleSR.enabled = false;
+        
         FindTarget();
     }
 
@@ -78,28 +85,28 @@ public class Enemy : MonoBehaviour
             target = null;
         }
 
-       /*
-        
-        if ((other.CompareTag("enemy")) && (has_attack) && (other.GetComponent<Enemy>().team !=team))
+
+        if ((other.CompareTag("enemy")) && (has_attack)  && (other.GetComponent<Enemy>().team !=team))
         {
-            //Debug.Log("enemy attacked another enemy");
+            Debug.Log("Enemy attacked");
             has_attack = false;
-            //enemySR.color = noAppleColor;
-            target = null;
-            if (other.GetComponent<Enemy>().hasApple)
-            {
-               // other.transform.GetChild(0).GetComponent<Apple>().onAttacked();
-                other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+
+            if (other.GetComponent<Enemy>().hasApple){
+
+                other.transform.GetChild(0).GetComponent<Apple>().appleSR.enabled = false; //Turn off the Sprite renderer for enemy display apple
+                other.GetComponent<Enemy>().on_Get_Attacked();
+                other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse); //Add force to the enemy that was attacked
                 other.GetComponent<Enemy>().hasApple = false;
                 other.GetComponent<Enemy>().AppleOnField = true;
+                target = null;
             }
-            else
-            {
-                other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+
+            else{
+                other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);//Add force to the enemy that was attacked
+                target = null;
             }
         }
-
-       */
+       
     }
 
 
@@ -142,18 +149,21 @@ public class Enemy : MonoBehaviour
 
     void PickUpApple()
     {
-        Vector3 spawnPosition = transform.position + transform.forward * 2f; //spawns it slightly in front of the enemy and makes it a child of enemy
-        Quaternion spawnRotation = Quaternion.identity;
-
-        apple = Instantiate(applePrefab, spawnPosition, spawnRotation, transform);
-        //Debug.Log("apple instantiated");
+        apple.GetComponent<Apple>().appleSR.enabled = true;
     }
 
     //destroy the apple object
     void DropApple()
     {
-        Destroy(apple);
-        //Debug.Log("apple destroyed");
+        apple.GetComponent<Apple>().appleSR.enabled = false;
+    }
+
+    void on_Get_Attacked(){
+        //Create a new thrown apple object
+        Vector3 spawnPosition = transform.position + transform.forward * 2f; //spawns it slightly in front of the enemy and makes it a child of enemy
+        Quaternion spawnRotation = Quaternion.identity;
+        fieldapple = Instantiate(fieldapplePrefab, spawnPosition, spawnRotation, transform);
+        fieldapple.GetComponent<ThrownApple>().appleRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
     }
 
 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5538038472581891910}
   m_Layer: 0
   m_Name: EnemyPrefabRed
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,10 +134,12 @@ MonoBehaviour:
     rgba: 16843009
   enemySpeed: 60.21
   enemyRB: {fileID: 0}
-  applePrefab: {fileID: 3026249953542121983, guid: 8965ed9120fcf3743ae0514a99611731, type: 3}
+  applePrefab: {fileID: 2509374296019035374, guid: 591f45fab12e8fc4499ae87701ca46a0, type: 3}
+  fieldapplePrefab: {fileID: 8046682434888997231, guid: 14ee2397bd817c04598f7cd99a3d89ad, type: 3}
+  fieldapple: {fileID: 0}
+  apple: {fileID: 0}
   target: {fileID: 0}
   team: 1
-  score: 0
 --- !u!70 &-5538038472581891910
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

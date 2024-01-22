@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
     }
     void CreateEnemies(GameObject enemyPrefab, int numberofEnemies){
         for (int i=0;i<numberofEnemies;i++){
-            GameObject enemy = Instantiate(enemyPrefab, transform.position + new Vector3(i,i,i), Quaternion.identity,transform);
+            GameObject enemy = Instantiate(enemyPrefab, transform.position + new Vector3(i,i,0), Quaternion.identity,transform);
             
 
             Enemy enemyScript = enemy.GetComponent<Enemy>();
@@ -30,4 +30,5 @@ public class Spawner : MonoBehaviour
             //enemy.team = team;
         }
     }
+
 }
