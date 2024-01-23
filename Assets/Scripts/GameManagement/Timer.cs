@@ -32,6 +32,7 @@ public class Timer : MonoBehaviour
                 Debug.Log("Time's up");
                 timeLeft = 0;
                 timerOn = false;
+                FindObjectOfType<LevelLoader>().LoadHighScoreScene();
             }
         }
     }
