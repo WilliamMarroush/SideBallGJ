@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private GameObject[] pitList;
     public GameObject applePrefab;
     private GameObject apple;
+    
+    public AudioSource playeraspunch;
 
     private bool hasApple = false;
     public int team;
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playeraspunch = GetComponent<AudioSource>();
         playerrb = GetComponent<Rigidbody2D>();
     }
 
@@ -50,6 +53,7 @@ public class Player : MonoBehaviour
             GameSession.AddToScore(1, team);  //adds a point to the players score.  needs the team id so it adds the points to the right team.
             Debug.Log("point obtained");
             //playerScore++;
+            other.GetComponent<Stash>().Cheer();
         }
     }
 
@@ -78,10 +82,14 @@ public class Player : MonoBehaviour
         Debug.Log("apple destroyed");
     }
 
-    void OnSpawn(){
-        //instantiate Main Camera as a child of the player
-        
+
+    public void on_Get_Attacked(){
+        if (hasApple){
+            DropApple();
+        }
+        hasApple = false;
+        //AppleOnField = true;
+        //enemyRB.velocity = new Vector2(enemyRB.velocity.x*-5, enemyRB.velocity.y*5);
+        playeraspunch.Play();
     }
-
-
 }
