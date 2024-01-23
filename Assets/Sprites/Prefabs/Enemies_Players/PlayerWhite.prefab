@@ -237,7 +237,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   applePrefab: {fileID: 2509374296019035374, guid: 591f45fab12e8fc4499ae87701ca46a0, type: 3}
+  playeraspunch: {fileID: 0}
   team: 0
 --- !u!82 &-8167768882309110762
 AudioSource:

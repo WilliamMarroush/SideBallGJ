@@ -8,12 +8,15 @@ public class LevelLoader : MonoBehaviour
 {
 
     int currentSceneIndex;
-    
+    public AudioSource gamestart;
+    public AudioSource gameend;
 
     // Start is called before the first frame update
     void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        gamestart = GetComponent<AudioSource>();
+        gameend = GetComponent<AudioSource>();
 
     }
 
@@ -29,6 +32,7 @@ public class LevelLoader : MonoBehaviour
     {
         FindObjectOfType<GameSession>().ResetGame();
         SceneManager.LoadScene("Game_Scene"); 
+        gamestart.Play();
     }
 
 
