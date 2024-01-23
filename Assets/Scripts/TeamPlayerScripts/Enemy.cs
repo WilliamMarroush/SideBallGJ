@@ -90,18 +90,7 @@ public class Enemy : MonoBehaviour
         if ((other.CompareTag("enemy")) && (has_attack)  && (other.GetComponent<Enemy>().team !=team))
         {
             has_attack = false;
-
-            if (other.GetComponent<Enemy>().hasApple){
-
-                other.transform.GetChild(0).GetComponent<Apple>().appleSR.enabled = false; //Turn off the Sprite renderer for enemy display apple
-                other.GetComponent<Enemy>().on_Get_Attacked();
-                //other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse); //Add force to the enemy that was attacked
-                
-            }
-
-            else{
-                other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);//Add force to the enemy that was attacked
-            }
+            other.GetComponent<Enemy>().on_Get_Attacked();
         }
        
     }
@@ -124,12 +113,13 @@ public class Enemy : MonoBehaviour
             }
         }
         
+        /*
         if (!hasApple && AppleOnField){
             target = fieldapple;
-        }
+        }*/
         
         //If the enemy doesn't have an apple, match the pitID to the team, then go to that pit
-        else{
+        if (!hasApple){
             for (int i=0; i<pitTargets.Length;i++){
                 if (pitTargets[i].GetComponent<Ballpit>().bpID == team){
                     target = pitTargets[i];
@@ -138,6 +128,7 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+       
     }
 
     //Move towards pit or stash
@@ -170,14 +161,18 @@ public class Enemy : MonoBehaviour
     }
 
     void on_Get_Attacked(){
+        if (hasApple){
+            DropApple();
+        }
         hasApple = false;
         AppleOnField = true;
         target = null;
-        fieldapple = Instantiate(fieldapplePrefab, transform.position, Quaternion.identity);
+        enemyRB.velocity = new Vector2(enemyRB.velocity.x*-5, enemyRB.velocity.y*-5);
+        /*fieldapple = Instantiate(fieldapplePrefab, transform.position, Quaternion.identity);
         Vector2 throwDirection = Random.insideUnitCircle.normalized;
 
         //apple.GetComponent<ThrownApple>().appleRB.AddForce(throwDirection, ForceMode2D.Impulse);
-        fieldapple.GetComponent<ThrownApple>().appleRB.transform.Translate(throwDirection, Space.World);
+        fieldapple.GetComponent<ThrownApple>().appleRB.transform.Translate(throwDirection, Space.World);*/
     }
 
 
