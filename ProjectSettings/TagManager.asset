@@ -47,14 +47,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: field
+    uniqueID: 3836133271
+    locked: 0
+  - name: stash
+    uniqueID: 3444172293
+    locked: 0
+  - name: stairs
+    uniqueID: 2415752573
+    locked: 0
   - name: audience
     uniqueID: 1728545175
     locked: 0
   - name: ground
     uniqueID: 3316123651
-    locked: 0
-  - name: stash
-    uniqueID: 3444172293
     locked: 0
   - name: pit
     uniqueID: 972485823

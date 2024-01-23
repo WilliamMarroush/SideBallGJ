@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
 
     public Rigidbody2D enemyRB;
     SpriteRenderer enemySR;
-
+    AudioSource enemyASpunch;
     public GameObject applePrefab;
     public GameObject fieldapplePrefab;
     public GameObject fieldapple;
@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
         //Get the enemy RB and SR Components from the scene
         enemyRB = GetComponent<Rigidbody2D>();
         enemySR = GetComponent<SpriteRenderer>();
+        enemyASpunch = GetComponent<AudioSource>();
 
         Vector3 ApplespawnPosition = transform.position + transform.forward * 2f; 
         Quaternion ApplespawnRotation = Quaternion.identity;
@@ -91,6 +92,11 @@ public class Enemy : MonoBehaviour
         {
             has_attack = false;
             other.GetComponent<Enemy>().on_Get_Attacked();
+        }
+        if ((other.CompareTag("player")) && (has_attack)  && (other.GetComponent<Player>().team !=team))
+        {
+            has_attack = false;
+            other.GetComponent<Player>().on_Get_Attacked();
         }
        
     }
@@ -165,9 +171,10 @@ public class Enemy : MonoBehaviour
             DropApple();
         }
         hasApple = false;
-        AppleOnField = true;
+        //AppleOnField = true;
         target = null;
-        enemyRB.velocity = new Vector2(enemyRB.velocity.x*-5, enemyRB.velocity.y*-5);
+        //enemyRB.velocity = new Vector2(enemyRB.velocity.x*-5, enemyRB.velocity.y*5);
+        enemyASpunch.Play();
         /*fieldapple = Instantiate(fieldapplePrefab, transform.position, Quaternion.identity);
         Vector2 throwDirection = Random.insideUnitCircle.normalized;
 
