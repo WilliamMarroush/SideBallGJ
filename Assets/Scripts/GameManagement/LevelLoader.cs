@@ -32,7 +32,6 @@ public class LevelLoader : MonoBehaviour
     {
         FindObjectOfType<GameSession>().ResetGame();
         SceneManager.LoadScene("Game_Scene"); 
-        gamestart.Play();
     }
 
 
