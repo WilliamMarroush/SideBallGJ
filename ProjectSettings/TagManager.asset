@@ -9,6 +9,7 @@ TagManager:
   - stash
   - player
   - enemy
+  - audience
   layers:
   - Default
   - TransparentFX
@@ -45,6 +46,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: audience
+    uniqueID: 1728545175
     locked: 0
   - name: ground
     uniqueID: 3316123651

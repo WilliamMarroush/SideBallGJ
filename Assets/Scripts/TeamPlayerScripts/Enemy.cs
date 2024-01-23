@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-
+        RunBounce();
         if (target == null)
         {
             FindTarget();
@@ -86,24 +86,21 @@ public class Enemy : MonoBehaviour
         }
 
 
+
         if ((other.CompareTag("enemy")) && (has_attack)  && (other.GetComponent<Enemy>().team !=team))
         {
-            Debug.Log("Enemy attacked");
             has_attack = false;
 
             if (other.GetComponent<Enemy>().hasApple){
 
                 other.transform.GetChild(0).GetComponent<Apple>().appleSR.enabled = false; //Turn off the Sprite renderer for enemy display apple
                 other.GetComponent<Enemy>().on_Get_Attacked();
-                other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse); //Add force to the enemy that was attacked
-                other.GetComponent<Enemy>().hasApple = false;
-                other.GetComponent<Enemy>().AppleOnField = true;
-                target = null;
+                //other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse); //Add force to the enemy that was attacked
+                
             }
 
             else{
                 other.GetComponent<Enemy>().enemyRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);//Add force to the enemy that was attacked
-                target = null;
             }
         }
        
@@ -126,6 +123,11 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+        
+        if (!hasApple && AppleOnField){
+            target = fieldapple;
+        }
+        
         //If the enemy doesn't have an apple, match the pitID to the team, then go to that pit
         else{
             for (int i=0; i<pitTargets.Length;i++){
@@ -146,6 +148,15 @@ public class Enemy : MonoBehaviour
         //Debug.Log("moving");
     }
 
+    void RunBounce(){
+        if (enemyRB.velocity != Vector2.zero)
+        {
+        // Rotate the enemy back and forth around the z axis
+        float rotationSpeed = 10f; // Adjust this value to your liking
+        float rotationDirection = Mathf.Sin(Time.time * rotationSpeed);
+        enemyRB.transform.rotation = Quaternion.Euler(0, 0, rotationDirection * 30); // Adjust the 45 to control the rotation range
+        }
+    }
 
     void PickUpApple()
     {
@@ -159,11 +170,14 @@ public class Enemy : MonoBehaviour
     }
 
     void on_Get_Attacked(){
-        //Create a new thrown apple object
-        Vector3 spawnPosition = transform.position + transform.forward * 2f; //spawns it slightly in front of the enemy and makes it a child of enemy
-        Quaternion spawnRotation = Quaternion.identity;
-        fieldapple = Instantiate(fieldapplePrefab, spawnPosition, spawnRotation, transform);
-        fieldapple.GetComponent<ThrownApple>().appleRB.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+        hasApple = false;
+        AppleOnField = true;
+        target = null;
+        fieldapple = Instantiate(fieldapplePrefab, transform.position, Quaternion.identity);
+        Vector2 throwDirection = Random.insideUnitCircle.normalized;
+
+        //apple.GetComponent<ThrownApple>().appleRB.AddForce(throwDirection, ForceMode2D.Impulse);
+        fieldapple.GetComponent<ThrownApple>().appleRB.transform.Translate(throwDirection, Space.World);
     }
 
 

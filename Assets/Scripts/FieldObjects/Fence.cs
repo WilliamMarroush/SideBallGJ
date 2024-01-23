@@ -17,10 +17,10 @@ public class Fence : MonoBehaviour
     {
         
     }
-    public void OnTriggerEnter2D(Collider2D other){
+    /*public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.tag == "enemy"){
             Vector2 opposite = -other.GetComponent<Enemy>().enemyRB.velocity;
-            other.GetComponent<Enemy>().enemyRB.AddForce(opposite*500, ForceMode2D.Impulse);
+            other.GetComponent<Enemy>().enemyRB.AddForce(opposite*20, ForceMode2D.Impulse);
         }
-    }
+    }*/
 }
