@@ -18,7 +18,7 @@ public class Score : MonoBehaviour
         //redEnemyScoreText = GetComponent<Text>();
         //blueEnemyScoreText = GetComponent<Text>();
         gameSession = FindObjectOfType<GameSession>();
-        if (SceneManager.GetActiveScene().name=="End_Game"){
+        if ((SceneManager.GetActiveScene().name=="End_Game") || (SceneManager.GetActiveScene().name=="High_Score")){
             getScores();
         }
     }

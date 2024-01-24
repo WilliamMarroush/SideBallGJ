@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class GameSession : MonoBehaviour
     [SerializeField] public static int playerScore = 0;
     [SerializeField] public static int blueEnemyScore = 0;
     [SerializeField] public static int redEnemyScore = 0;
-
+    
+    [SerializeField] public Text inputName;
+    
     private void Awake()
     {
         SetUpSingleton();
@@ -36,7 +39,6 @@ public class GameSession : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -59,8 +61,12 @@ public class GameSession : MonoBehaviour
     {
         return blueEnemyScore;
     }
-
-
+    public Text GetName(){
+        return inputName;
+    }
+    public void Submit(string name){
+        inputName.text = name;
+    }
 
     public static void AddToScore(int scoreValue, int teamID)
     {
@@ -92,4 +98,5 @@ public class GameSession : MonoBehaviour
         blueEnemyScore = 0;
         Destroy(this.gameObject);
     }
+
 }
