@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
 
+    [SerializeField] AudioSource buzzer;
+
     [SerializeField] public float timeLeft;
     public bool timerOn = false;
 
@@ -31,6 +33,8 @@ public class Timer : MonoBehaviour
             {
                 Debug.Log("Time's up");
                 timeLeft = 0;
+                buzzer.Play();
+                FindObjectOfType<LevelLoader>().LoadEndGameScene();
                 timerOn = false;
             }
         }

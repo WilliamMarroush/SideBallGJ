@@ -40,9 +40,14 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene("Main_Menu");
     }
 
+    public void LoadEndGameScene()
+    {
+        SceneManager.LoadScene("End_Game");
+    }
+
     public void LoadHighScoreScene()
     {
-        SceneManager.LoadScene("High_Score_Scene");
+        SceneManager.LoadScene("High_Score");
 
     }
 
