@@ -146,13 +146,10 @@ public class Enemy : MonoBehaviour
     }
 
     void RunBounce(){
-        if (enemyRB.velocity != Vector2.zero)
-        {
         // Rotate the enemy back and forth around the z axis
         float rotationSpeed = 10f; // Adjust this value to your liking
         float rotationDirection = Mathf.Sin(Time.time * rotationSpeed);
         enemyRB.transform.rotation = Quaternion.Euler(0, 0, rotationDirection * 30); // Adjust the 45 to control the rotation range
-        }
     }
 
     void PickUpApple()

@@ -32,10 +32,10 @@ public class Timer : MonoBehaviour
             else
             {
                 Debug.Log("Time's up");
-                timeLeft = 0;
                 buzzer.Play();
-                FindObjectOfType<LevelLoader>().LoadEndGameScene();
+                timeLeft = 0;
                 timerOn = false;
+                StartCoroutine(WaitForTime());
             }
         }
     }
@@ -51,5 +51,9 @@ public class Timer : MonoBehaviour
         timerText.text = minutes.ToString() + ":" + seconds.ToString(); //string.Format("{0:00} : {1:00}", minutes, seconds);
     }
 
+    IEnumerator WaitForTime(){
+        yield return new WaitForSeconds(1);
+        FindObjectOfType<LevelLoader>().LoadEndGameScene();
+    }
 
 }
